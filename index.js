@@ -5,7 +5,22 @@ const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
 program
-  .command('generate token')
+  .command('finish-feature')
+  .description('Finish feature')
+  .action(async () => {
+    try {
+      const isGitDirectory = await git.isGitDirectory();
+      if (!isGitDirectory) {
+        console.log('You are not in a git directory');
+        return;
+      }
+      await git.finishFeature(git.getConfig(process.cwd()));
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+program
+  .command('generate-token')
   .description('Generate Github personal access token to be used by gitflow')
   .action(async () => {
     try {
@@ -15,7 +30,7 @@ program
     }
   });
 program
-  .command('get config')
+  .command('get-config')
   .description('Set default project and sprint number')
   .action(() => {
     try {
@@ -25,7 +40,7 @@ program
     }
   });
 program
-  .command('remove token')
+  .command('remove-token')
   .description('Remove Github personal access token from your local machine')
   .action(async () => {
     try {
@@ -35,7 +50,7 @@ program
     }
   });
 program
-  .command('set config')
+  .command('set-config')
   .description('Set default project and sprint number')
   .action(async () => {
     try {
@@ -46,7 +61,7 @@ program
     }
   });
 program
-  .command('start feature')
+  .command('start-feature')
   .description('Create new feature branch')
   .action(async () => {
     try {
@@ -61,7 +76,7 @@ program
     }
   });
 program
-  .command('start sprint')
+  .command('start-sprint')
   .description('Create new sprint branch')
   .action(async () => {
     try {
