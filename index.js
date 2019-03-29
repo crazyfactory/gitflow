@@ -20,6 +20,21 @@ program
     }
   });
 program
+  .command('finish-hotfix')
+  .description('Finish hotfix')
+  .action(async () => {
+    try {
+      const isGitDirectory = await git.isGitDirectory();
+      if (!isGitDirectory) {
+        console.log('You are not in a git directory');
+        return;
+      }
+      await git.finishHotfix(git.getConfig());
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+program
   .command('generate-token')
   .description('Generate Github personal access token to be used by gitflow')
   .action(async () => {
