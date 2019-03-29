@@ -29,7 +29,22 @@ program
         console.log('You are not in a git directory');
         return;
       }
-      await git.finishHotfix(git.getConfig());
+      await git.finishHotfix(git.getConfig(process.cwd()));
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+program
+  .command('finish-sprint')
+  .description('Finish Sprint')
+  .action(async () => {
+    try {
+      const isGitDirectory = await git.isGitDirectory();
+      if (!isGitDirectory) {
+        console.log('You are not in a git directory');
+        return;
+      }
+      await git.finishSprint(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
