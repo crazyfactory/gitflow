@@ -76,6 +76,21 @@ program
     }
   });
 program
+  .command('start-hotfix')
+  .description('Create new hotfix branch')
+  .action(async () => {
+    try {
+      const isGitDirectory = await git.isGitDirectory();
+      if (!isGitDirectory) {
+        console.log('You are not in a git directory');
+        return;
+      }
+      await git.startHotfix();
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+program
   .command('start-sprint')
   .description('Create new sprint branch')
   .action(async () => {
