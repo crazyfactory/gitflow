@@ -39,7 +39,7 @@ Delete personal access token locally
 ### `$ gitflow finish-feature`
   - Push local branch to origin
   - Create pull and fill content `Closes #{issue_number}` to `origin/{project_name}/sprint-{sprint_number}`
-  - Switch local to `origin/{project_name}/sprint-{sprint number}`
+  - Switch local to `origin/{project_name}/sprint-{sprint_number}`
 
 ### `$ gitflow start-hotfix`
   - Create a new local hotfix branch
