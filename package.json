@@ -1,5 +1,5 @@
 {
-  "name": "gitflow",
+  "name": "@crazyfactory/gitflow",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,5 +18,8 @@
     "configstore": "^4.0.0",
     "inquirer": "^6.2.2",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.3"
   }
 }
