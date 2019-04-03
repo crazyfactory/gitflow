@@ -1,7 +1,6 @@
 {
   "name": "@crazyfactory/gitflow",
-  "version": "1.0.0",
-  "description": "",
+  "description": "Gitflow made easy",
   "main": "index.js",
   "scripts": {
     "test": "jest",
