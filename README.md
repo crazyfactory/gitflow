@@ -2,7 +2,7 @@
 
 ## Install
 ```
-$ npm install @crazyfactory/gitflow
+$ npm install -g @crazyfactory/gitflow
 ```
 
 ## Usages
