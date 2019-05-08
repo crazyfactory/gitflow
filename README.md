@@ -33,7 +33,7 @@ Delete personal access token locally
 ### `$ gitflow start-feature`
   - Create new local feature branch
   - Branch out from `origin/{project_name}/sprint-{number}`
-  - Naming convention: `{issue_number}-{feature_name}`
+  - Naming convention: `{project_name}-sprint-{number}/{issue_number}-{feature_name}`
   - Push to origin
 
 ### `$ gitflow finish-feature`
