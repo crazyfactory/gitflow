@@ -9,11 +9,7 @@ program
   .description('Finish feature')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishFeature(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
@@ -24,11 +20,7 @@ program
   .description('Finish hotfix')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishHotfix(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
@@ -39,11 +31,7 @@ program
   .description('Finish Sprint')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishSprint(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
@@ -95,11 +83,7 @@ program
   .description('Create new feature branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startFeature(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
@@ -110,11 +94,7 @@ program
   .description('Create new hotfix branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startHotfix();
     } catch (e) {
       console.log(e.message);
@@ -125,11 +105,7 @@ program
   .description('Create new sprint branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startSprint(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
