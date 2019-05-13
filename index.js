@@ -4,6 +4,7 @@ const inquirer = require('./lib/inquirer');
 const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
+
 program
   .command('finish-feature')
   .description('Finish feature')
@@ -15,6 +16,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('finish-hotfix')
   .description('Finish hotfix')
@@ -26,6 +28,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('finish-sprint')
   .description('Finish Sprint')
@@ -37,6 +40,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('generate-token')
   .description('Generate Github personal access token to be used by gitflow')
@@ -47,6 +51,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('get-config')
   .description('Set default project and sprint number')
@@ -57,6 +62,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('remove-token')
   .description('Remove Github personal access token from your local machine')
@@ -67,6 +73,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('set-config')
   .description('Set default project and sprint number')
@@ -78,6 +85,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('start-feature')
   .description('Create new feature branch')
@@ -89,6 +97,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('start-hotfix')
   .description('Create new hotfix branch')
@@ -100,6 +109,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('start-sprint')
   .description('Create new sprint branch')
@@ -111,4 +121,5 @@ program
       console.log(e.message);
     }
   });
+
 program.parse(process.argv);
