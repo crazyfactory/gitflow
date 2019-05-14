@@ -4,51 +4,43 @@ const inquirer = require('./lib/inquirer');
 const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
+
 program
   .command('finish-feature')
   .description('Finish feature')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishFeature(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program
   .command('finish-hotfix')
   .description('Finish hotfix')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishHotfix(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program
   .command('finish-sprint')
   .description('Finish Sprint')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.finishSprint(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program
   .command('generate-token')
   .description('Generate Github personal access token to be used by gitflow')
@@ -59,6 +51,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('get-config')
   .description('Set default project and sprint number')
@@ -69,6 +62,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('remove-token')
   .description('Remove Github personal access token from your local machine')
@@ -79,6 +73,7 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('set-config')
   .description('Set default project and sprint number')
@@ -90,49 +85,41 @@ program
       console.log(e.message);
     }
   });
+
 program
   .command('start-feature')
   .description('Create new feature branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startFeature(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program
   .command('start-hotfix')
   .description('Create new hotfix branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startHotfix();
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program
   .command('start-sprint')
   .description('Create new sprint branch')
   .action(async () => {
     try {
-      const isGitDirectory = await git.isGitDirectory();
-      if (!isGitDirectory) {
-        console.log('You are not in a git directory');
-        return;
-      }
+      await git.bailIfNotGitDirectory();
       await git.startSprint(git.getConfig(process.cwd()));
     } catch (e) {
       console.log(e.message);
     }
   });
+
 program.parse(process.argv);
