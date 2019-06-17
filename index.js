@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const path = require('path');
 const inquirer = require('./lib/inquirer');
 const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
 
-program.version(JSON.parse(fs.readFileSync('./package.json'))['version'] || 'test-mode', '-v, --version');
+program.version(
+  JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json')))['version'] || 'test-mode', '-v, --version'
+);
 
 program
   .command('finish-feature')
