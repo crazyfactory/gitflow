@@ -118,11 +118,12 @@ program
 
 program
   .command('start-sprint')
+  .arguments('[project] [sprint]')
   .description('Create new sprint branch')
-  .action(async () => {
+  .action(async (project, sprint) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startSprint(git.getConfig(process.cwd()));
+      await git.startSprint(git.getConfig(process.cwd()), project, sprint);
     } catch (e) {
       console.log(e.message);
     }
