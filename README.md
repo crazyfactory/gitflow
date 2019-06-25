@@ -1,7 +1,7 @@
 # Gitflow
 
 ## Install
-```
+```sh
 $ npm install -g @crazyfactory/gitflow
 ```
 
@@ -19,7 +19,7 @@ Fill in your Github username and password to let Gitflow create personal access 
 ### `$ gitflow remove-token`
 Delete personal access token locally
 
-### `$ gitflow start-sprint`
+### `$ gitflow start-sprint [project] [sprintNum]`
   - Create new local sprint branch
   - Branch out from `origin/develop`
   - Naming convention: `{project_name}/sprint-{sprint_number}`
@@ -30,7 +30,7 @@ Delete personal access token locally
   - Create pull and fill content `Closes #{issue_number}` to `origin/develop` 
   - Switch local to `origin/develop`
 
-### `$ gitflow start-feature`
+### `$ gitflow start-feature [feature-branch]`
   - Create new local feature branch
   - Branch out from `origin/{project_name}/sprint-{number}`
   - Naming convention: `{project_name}-sprint-{number}/{issue_number}-{feature_name}`
@@ -41,7 +41,7 @@ Delete personal access token locally
   - Create pull and fill content `Closes #{issue_number}` to `origin/{project_name}/sprint-{sprint_number}`
   - Switch local to `origin/{project_name}/sprint-{sprint_number}`
 
-### `$ gitflow start-hotfix`
+### `$ gitflow start-hotfix [hotfix-branch]`
   - Create a new local hotfix branch
   - Branch out from `origin/master`
   - Naming convention: `{issue_number}-{hotfix_name}`
