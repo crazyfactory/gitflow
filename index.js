@@ -93,11 +93,12 @@ program
 
 program
   .command('start-feature')
+  .arguments('[feature-branch]')
   .description('Create new feature branch')
-  .action(async () => {
+  .action(async (featureBranch) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startFeature(git.getConfig(process.cwd()));
+      await git.startFeature(git.getConfig(process.cwd()), featureBranch);
     } catch (e) {
       console.log(e.message);
     }
@@ -105,11 +106,12 @@ program
 
 program
   .command('start-hotfix')
+  .arguments('[hotfix-branch]')
   .description('Create new hotfix branch')
-  .action(async () => {
+  .action(async (hotfixBranch) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startHotfix();
+      await git.startHotfix(hotfixBranch);
     } catch (e) {
       console.log(e.message);
     }
@@ -117,11 +119,12 @@ program
 
 program
   .command('start-sprint')
+  .arguments('[project] [sprint]')
   .description('Create new sprint branch')
-  .action(async () => {
+  .action(async (project, sprint) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startSprint(git.getConfig(process.cwd()));
+      await git.startSprint(git.getConfig(process.cwd()), project, sprint);
     } catch (e) {
       console.log(e.message);
     }
