@@ -105,13 +105,14 @@ program
 
 program
   .command('start-hotfix')
+  .arguments('[hotfix-branch]')
   .description('Create new hotfix branch')
-  .action(async () => {
+  .action(async (hotfixBranch) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startHotfix();
+      await git.startHotfix(hotfixBranch);
     } catch (e) {
-      console.log(e.message);
+      console.log(e.message, e);
     }
   });
 
