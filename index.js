@@ -93,11 +93,12 @@ program
 
 program
   .command('start-feature')
+  .arguments('[feature-branch]')
   .description('Create new feature branch')
-  .action(async () => {
+  .action(async (featureBranch) => {
     try {
       await git.bailIfNotGitDirectory();
-      await git.startFeature(git.getConfig(process.cwd()));
+      await git.startFeature(git.getConfig(process.cwd()), featureBranch);
     } catch (e) {
       console.log(e.message);
     }
@@ -112,7 +113,7 @@ program
       await git.bailIfNotGitDirectory();
       await git.startHotfix(hotfixBranch);
     } catch (e) {
-      console.log(e.message, e);
+      console.log(e.message);
     }
   });
 
