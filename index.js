@@ -149,7 +149,14 @@ program
 
 program.on('command:*', async (args) => {
   const alias = args.shift();
-  const cmd = conf.get(`alias:${alias}`);
+  let cmd = conf.get(`alias:${alias}`);
+  const pkg = path.join(process.cwd(), '/package.json');
+
+  // package.json alias overrides the common alias
+  if (fs.existsSync(pkg)) {
+    const {gitflow: {alias: aliases = {}} = {}} = require(pkg);
+    cmd = aliases[alias] || cmd;
+  }
 
   try {
     if (!cmd) {
