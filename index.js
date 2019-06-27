@@ -6,6 +6,7 @@ const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
 const conf = new (require('configstore'))('gitflow');
+const exec = require('util').promisify(require('child_process').exec);
 
 program.version(
   JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json')))['version'] || 'test-mode', '-v, --version'
@@ -142,5 +143,30 @@ program
       console.log(e.message);
     }
   });
+
+program.on('command:*', async (args) => {
+  const alias = args.shift();
+  const cmd = conf.get(`alias:${alias}`);
+
+  try {
+    if (!cmd) {
+      throw new Error(`Unknown command or alias: ${alias}`);
+    }
+
+    console.log(`> ${cmd} ${args.join(' ')}`);
+    const proc = await exec(`${cmd} ${args.join(' ')}`).catch((err) => err);
+
+    if (proc.stdout !== '') {
+      console.log(proc.stdout);
+    }
+    if (proc.stderr !== '') {
+      console.error(proc.stderr);
+    }
+
+    process.exit(proc.exitCode || proc.code);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
 
 program.parse(process.argv);
