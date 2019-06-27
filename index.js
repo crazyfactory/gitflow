@@ -137,8 +137,11 @@ program
   .arguments('<alias> <cmd...>')
   .description('Create new alias for a command')
   .action(async (alias, cmd) => {
+    const cmdAlias = {[`alias:${alias}`]: cmd.join(' ')};
+
     try {
-      conf.set(`alias:${alias}`, cmd.join(' '));
+      conf.set(cmdAlias);
+      console.log(cmdAlias);
     } catch (e) {
       console.log(e.message);
     }
