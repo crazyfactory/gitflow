@@ -5,6 +5,7 @@ const inquirer = require('./lib/inquirer');
 const git = require('./lib/git');
 const github = require('./lib/github');
 const program = require('commander');
+const conf = new (require('configstore'))('gitflow');
 
 program.version(
   JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json')))['version'] || 'test-mode', '-v, --version'
@@ -125,6 +126,18 @@ program
     try {
       await git.bailIfNotGitDirectory();
       await git.startSprint(git.getConfig(process.cwd()), project, sprint);
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+
+program
+  .command('alias')
+  .arguments('<alias> <cmd...>')
+  .description('Create new alias for a command')
+  .action(async (alias, cmd) => {
+    try {
+      conf.set(`alias:${alias}`, cmd.join(' '));
     } catch (e) {
       console.log(e.message);
     }
