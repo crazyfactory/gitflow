@@ -32,13 +32,13 @@ Delete personal access token locally
 
 ### `$ gitflow start-feature [feature-branch]`
   - Create new local feature branch
-  - Branch out from `origin/{project_name}/sprint-{number}`
+  - If project is maintenance, branch out from `develop`, otherwise branch out from `origin/{project_name}/sprint-{number}`
   - Naming convention: `{project_name}-sprint-{number}/{issue_number}-{feature_name}`
   - Push to origin
 
 ### `$ gitflow finish-feature`
   - Push local branch to origin
-  - Create pull and fill content `Closes #{issue_number}` to `origin/{project_name}/sprint-{sprint_number}`
+  - If project name is maintenance create pull to `develop`, otherwise create pull to `origin/{project_name}/sprint-{sprint_number}`. Then fill content `Closes #{issue_number}`. 
   - Switch local to `origin/{project_name}/sprint-{sprint_number}`
 
 ### `$ gitflow start-hotfix [hotfix-branch]`
@@ -49,5 +49,5 @@ Delete personal access token locally
 
 ### `$ gitflow finish-hotfix`
   - Push local branch to origin
-  - Create pull and fill content `Closes #{issue_number}` to `origin/master` and `origin/develop`
+  - Create pull and fill content `Closes #{issue_number}` to `origin/master`
   - Switch local branch to `origin/master`
