@@ -147,6 +147,17 @@ program
     }
   });
 
+program
+  .command('soft-push')
+  .description('Perform soft push to trigger CI build')
+  .action(async () => {
+    try {
+      await git.softPush();
+    } catch (e) {
+      console.log(e.message);
+    }
+  });
+
 program.on('command:*', async (args) => {
   const alias = args.shift();
   let cmd = conf.get(`alias:${alias}`);
