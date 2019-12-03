@@ -7,6 +7,9 @@ $ npm install -g @crazyfactory/gitflow
 
 ## Usages
 
+### `$ gitflow alias <name> <cmd>`
+Set `<cmd>` as an alias of `<name>` which you can run as `gitflow <name>`
+
 ### `$ gitflow set-config`
 Set `project_name` and `sprint_number` for current path
   
@@ -51,3 +54,6 @@ Delete personal access token locally
   - Push local branch to origin
   - Create pull and fill content `Closes #{issue_number}` to `origin/master`
   - Switch local branch to `origin/master`
+
+### `$ gitflow soft-push`
+  - Create an empty commit and push it
